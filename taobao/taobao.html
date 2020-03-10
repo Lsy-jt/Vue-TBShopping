@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/shopping_cart.css">
+	</head>
+
+	<body>
+		<div id="shop_car">
+
+			<!--商品列表-->
+			<section class="car_main">
+				<!--顶部列表-->
+				<div class="car_head">
+					<ul class="car_top">
+						<li class="car_check_all">
+							<a href="#" @click="l(0)"/>商品信息</a>
+						</li>
+						<li class="car_information">
+							<a href="#" @click="l(1)"/>
+							购物车({{add_products}})
+							</a>
+						</li>
+					</ul>
+				</div>
+				<!--商品列表-->
+				<template v-if="i == 0">
+					<div v-for="(shop,shop_index) in goods">
+						<div v-for="(product,product_index) in shop.list" style="float:left;">
+							<div class="pro">
+								<div class="pro_det">
+									<img :src="product.url" class="list" /><br />
+									<!--商品名称-->
+									<div class="product_shop_info" style="width: 200px;height:40px">
+										<div class="product_shop_name" style="width: 200px;height:40px">
+											{{product.product_name}}
+										</div>
+									</div><br />
+									<!--现价-->
+									<div class="product_amount" style="width: 60px;height:30px">
+										<div class="product_total_price">￥{{ product.current_price | priceFilter}}
+										</div>
+									</div><br />
+									<!--原价-->
+									<div class="product_price" style="width: 100px;height:40px">
+										<div v-if="product.origin_price" class="product_price_origin">
+											￥{{product.origin_price | priceFilter}}
+										</div>
+									</div>
+									<button class="btn btn-sm btn-danger" v-on:click="product_add(shop_index,product_index)">加入购物车</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</template>
+			</section>
+
+			<!--购物车列表-->
+			<div style="margin-top: -200px;" v-if="i == 1">
+				<section class="car_main">
+					<!--顶部列表-->
+					<div class="car_head">
+						<ul class="car_top">
+							<li class="car_check_all">
+								<input type="checkbox" id="check_all" v-model="checked_all" @click="all_products_checked" />
+								<label for="check_all">全选</label>
+							</li>
+							<li class="car_information">商品信息</li>
+							<li class="car_price">单价</li>
+							<li class="car_number">数量</li>
+							<li class="car_amount">金额</li>
+							<li class="car_operation">操作</li>
+						</ul>
+					</div>
+					<!--购物车为空时展示页面-->
+					<template v-if="add_products ==  0">
+						<div class="cart_empty">
+							您的购物车还是空的哦，快去挑选您喜欢的东西吧.
+						</div>
+					</template>
+					<!--购物车详情展示-->
+					<template v-else>
+						<div v-for="(shop,shop_index) in goods">
+							<!--当店铺下面有已购买商品的时候显示该店铺和商品信息-->
+							<div v-if="shop.list.length != 0">
+								<!--商品详细标题-->
+								<div class="shop_info" v-if="shop.list[0].number != 0">
+									<ul>
+										<li class="shop_info_check_all">
+											<input type="checkbox" v-model="shop.all_checked" @click="shop_all_check(shop_index)">
+										</li>
+										<li>
+											<img :src="shop.url" class="shop_icon" />
+										</li>
+										<li>
+											<span style="margin-left: 10px;">店铺：</span>
+										</li>
+										<li>
+											<a :href="shop.href">{{shop.shop_name}}</a>
+										</li>
+										<li>
+											<img src="img/tianmao.png" class="shop_icon" />
+										</li>
+										<li>
+											<img src="img/优惠券.png" v-if="shop.discount.length != 0" class="shop_discount" />
+										</li>
+									</ul>
+								</div>
+								<div v-for="(product,product_index) in shop.list" class="product" v-bind:class="[product.product_checked ? 'selected_styles' : '']">
+									<div class="product_details" v-if="product.number>0">
+
+										<!--商品是否选中-->
+										<div class="product_check">
+											<input type="checkbox" v-model="product.product_checked" @click="product_checked_click(shop_index,product_index)" />
+										</div>
+
+										<!--商品图片-->
+										<div class="product_img">
+											<img :src="product.url" style="width: 100px;height: 100px" />
+										</div>
+
+										<!--商品名称-->
+										<div class="product_shop_info">
+											<div class="product_shop_name">
+												<a :href="product.href">{{product.product_name}}</a>
+											</div>
+
+											<div class="product_shop_icon">
+												<img src="img/xcard.png" title="银联支付" />
+											</div>
+										</div>
+
+										<!--商品尺寸颜色等属性-->
+										<div class="product_type_select" @mouseenter="enter(shop_index,product_index)" @mouseleave="leave(shop_index,product_index)">
+											<div class="product_type_all">
+												<div v-for="type in product.product_type" class="product_type">
+													{{type.key}}: {{type.value}}
+												</div>
+											</div>
+											<div class="product_edit" id="product_edit" v-bind:class="[product.edit_type? 'product_edit_type_true':'product_edit_type_false']">
+												<button class="product_edit_button">编辑</button>
+											</div>
+										</div>
+
+										<!--商品价格-->
+										<div class="product_price">
+											<div v-if="product.origin_price" class="product_price_origin">
+												￥{{product.origin_price | priceFilter}}
+											</div>
+											<div class="product_price_current">
+												￥{{product.current_price | priceFilter}}
+											</div>
+										</div>
+
+										<!--商品数量-->
+										<div class="product_number">
+											<div class="product_number_content">
+												<div class="product_number_button">
+													<button v-if="product.number > 1" @click="product_reduce(shop_index,product_index)"> -</button>
+												</div>
+												<div class="product_number_input">
+													<input type="number" v-model="product.number" readonly />
+												</div>
+												<div class="product_number_button" @click="product_add(shop_index,product_index)">
+													<button>+</button>
+												</div>
+											</div>
+										</div>
+
+										<!--金额统计-->
+										<div class="product_amount">
+											<div class="product_total_price">￥{{ product_total_price(shop_index,product_index) | priceFilter}}
+											</div>
+										</div>
+
+										<!--操作选项-->
+										<div class="product_operation">
+											<div>
+												<button>移入收藏夹</button>
+											</div>
+											<div>
+												<button @click="product_del(shop_index,product_index)">删除</button>
+											</div>
+											<div>
+												<button>相似宝贝</button>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</template>
+
+					<!--底部页面-->
+					<div class="car_foot_bar">
+						<div class="car_foot_settle">
+							<div class="piece">已选商品 <strong class="piece_num">{{selected_products}}</strong> 件</div>
+							<div class="totalMoney">合计 (不含运费) : <strong class="total_text">{{total_amount | priceFilter}}</strong> 元</div>
+							<div class="settle_accounts">
+								<button class="settle_button" :disabled="selected_products == 0 ? true : false" @click="shop_settle">
+									买单
+								</button>
+							</div>
+						</div>
+					</div>
+
+				</section>
+			</div>
+		</div>
+
+		<script src="js/shopping_cart.js"></script>
+
+	</body>
+</html>

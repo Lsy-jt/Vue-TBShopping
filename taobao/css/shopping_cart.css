@@ -1,0 +1,415 @@
+.car_main {
+    position: relative;
+    width: 980px;
+    margin: 0px auto;
+    padding: 0px 0px;
+    min-height: 250px;
+  }
+
+  .car_head {
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    color: #3c3c3c;
+    font-size: 14px;
+    padding: 0px;
+    border-bottom: 1px solid #DCDCDC;
+  }
+
+  .car_top {
+    width: 100%;
+    height: 50px;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    float: left;
+    text-align: left;
+  }
+
+  .car_check_all {
+    position: relative;
+    width: 10%;
+    left: -20px;
+  }
+
+  .car_check_all input[type="checkbox"] {
+  }
+
+  .car_check_all label {
+  }
+
+  .car_information {
+    width: 45%;
+  }
+
+  .car_price {
+    width: 11%;
+  }
+
+  .car_number {
+    width: 10%;
+  }
+
+  .car_amount {
+    width: 11%;
+  }
+
+  .cart_empty {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    text-align: center;
+  }
+
+  .car_foot_bar {
+    position: absolute;
+    width: 100%;
+    height: 45px;
+    font-size: 14px;
+    color: #3c3c3c;
+    margin-top: 15px;
+  }
+
+  .car_foot_settle {
+    float: right;
+
+  }
+
+  .piece {
+    float: left;
+    height: 45px;
+    line-height: 45px;
+  }
+
+  .totalMoney {
+    float: left;
+    margin-left: 20px;
+    height: 45px;
+    line-height: 45px;
+  }
+
+  .settle_accounts {
+    float: left;
+    margin-left: 20px;
+    height: 45px;
+    line-height: 45px;
+  }
+
+  .piece_num {
+    color: red;
+  }
+
+  .total_text {
+    color: red;
+    font-size: 18px;
+  }
+
+  .settle_button {
+    width: 100px;
+    height: 45px;
+    line-height: 45px;
+    border: none;
+    outline: none;
+    background-color: #d9534f;
+
+  }
+
+  .settle_button:disabled {
+    background-color: #eeefff;
+  }
+
+  .shop_info {
+    width: 100%;
+    height: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    align-items: center;
+    display: flex;
+  }
+
+  .shop_info_check_all {
+    position: relative;
+    width: 10px;
+    left: -20px;
+  }
+
+  .shop_info li a {
+    text-decoration: none;
+    margin-right: 10px;
+    color: #3c3c3c;
+  }
+
+  .shop_info li a:hover {
+    color: red;
+    text-decoration: underline;
+  }
+
+  .shop_icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .shop_discount {
+    width: 60px;
+    height: 20px;
+    margin-left: 10px;
+  }
+
+  .product {
+    width: 100%;
+    border: 1px solid #DCDCDC;
+    background: #F5F5F5;
+  }
+
+  .selected_styles {
+    background: lightgoldenrodyellow;
+  }
+
+  .product_details {
+    width: 100%;
+    height: 145px;
+    padding-left: 20px;
+  }
+
+  .product_description {
+    width: 100%;
+    height: 25px;
+    background: white;
+    font-size: 12px;
+    padding-left: 50px;
+    align-items: center;
+    display: flex;
+  }
+
+  .product_description_bg {
+    width: fit-content;
+    background: #eee;
+    height: 20px;
+    line-height: 20px;
+  }
+
+  .product_check {
+    float: left;
+    margin-top: -8px;
+    padding-top: 20px;
+  }
+
+  .product_img {
+    float: left;
+    padding-top: 20px;
+  }
+
+  .product_shop_info {
+    height: 100px;
+    float: left;
+    padding-left: 10px;
+    position: relative;
+    width: 220px;
+    padding-right: 20px;
+    padding-top: 20px;
+  }
+
+  .product_shop_name {
+    font-size: 12px;
+    text-align: left;
+  }
+
+  .product_shop_name a {
+    text-decoration: none;
+    letter-spacing: 2px;
+    color: #3c3c3c;
+    align-content: left;
+  }
+
+  .product_shop_name a:hover {
+    color: red;
+    text-decoration: underline;
+  }
+
+  .product_shop_icon {
+    position: absolute;
+    bottom: 0px;
+    width: fit-content;
+  }
+
+  .product_type_select {
+    width: 155px;
+    height: 120px;
+    font-size: 12px;
+    text-align: left;
+    float: left;
+    position: relative;
+    padding-bottom: 10px;
+    color: #3c3c3c;
+    border: 1px dashed transparent;
+  }
+
+  .product_type_select:hover {
+    border: 1px dashed #F00
+  }
+
+  .product_type_all:first-child {
+    padding-top: 20px;
+  }
+
+  .product_type {
+    width: 125px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+  }
+
+  .product_edit {
+    width: fit-content;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .product_edit_button {
+    color: white;
+    background: red;
+    border: none;
+    outline: none;
+  }
+
+  .product_edit_type_true {
+    display: block;
+  }
+
+  .product_edit_type_false {
+    display: none;
+  }
+
+  .product_price {
+    width: 105px;
+    float: left;
+    padding-top: 20px;
+    text-align: left;
+    padding-left: 20px;
+  }
+
+  .product_price_origin {
+    width: fit-content;
+    font-size: 14px;
+    color: grey;
+    text-decoration: line-through;
+  }
+
+  .product_price_current {
+    width: fit-content;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .product_number {
+    width: 90px;
+    float: left;
+    padding-top: 20px;
+  }
+
+  .product_number_content {
+    width: fit-content;
+    height: 24px;
+    background: #eee;
+  }
+
+  .product_number_button {
+    width: 24px;
+    float: left;
+    margin: 0px auto;
+    border: 1px solid transparent;
+  }
+
+  .product_number_button button {
+    width: 24px;
+    height: 24px;
+    outline: none;
+    background: transparent;
+    border: 1px solid transparent;
+  }
+
+  .product_number_button button:hover {
+    background: transparent;
+    border: 1px solid orange;
+  }
+
+  .product_number_input {
+    width: fit-content;
+    text-align: center;
+    float: left;
+    margin: 0px auto;
+  }
+
+  .product_number_input input {
+    width: 30px;
+    height: 24px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .product_number_input input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .product_number_input input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .product_amount {
+    width: 100px;
+    float: left;
+    padding-top: 20px;
+  }
+
+  .product_total_price {
+    width: 100px;
+    font-size: 16px;
+    color: red;
+    font-weight: bold;
+    word-wrap: break-word;
+  }
+
+  .product_operation {
+    width: 100px;
+    float: left;
+    padding-top: 20px;
+    text-align: left;
+    margin-left: 20px;
+    line-height: 15px;
+    color: #3c3c3c;
+  }
+
+  .product_operation button {
+    width: fit-content;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 12px;
+  }
+
+  .product_operation button:hover {
+    color: red;
+    text-decoration: underline;
+  }
+	
+	.pro {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	
+	.pro_det {
+		float: left;
+		padding: 10px;
+		list-style: none;
+		margin: 5px;
+		border: 1px solid #eee;
+	}
+	.list{
+		width: 213px;
+		height: 213px;
+	}
